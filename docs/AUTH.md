@@ -7,6 +7,7 @@ A user must be authenticated first; then authorization decides each action.
 
 ## Roles
 | Action | ADMIN | HR | EMPLOYEE |
+|---|---|---|---|
 | Create employee | Yes | Yes | No |
 | View all employees | Yes | Yes | No |
 | View own record | Yes | Yes | Yes |
