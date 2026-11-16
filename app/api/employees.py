@@ -1,6 +1,6 @@
 from typing import List
 
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, Query, status
 from sqlalchemy.orm import Session
 
 from app.database.database import get_db
@@ -8,6 +8,7 @@ from app.schemas.schemas import (
     EmployeeCreate, EmployeeOut, EmployeeUpdate, LeaveCreate, LeaveOut,
 )
 from app.services.employee_service import EmployeeService
+from app.schemas.schemas import EmployeePage
 
 router = APIRouter(prefix="/employees", tags=["Employees"])
 
@@ -52,3 +53,5 @@ def add_leave(employee_id: int, data: LeaveCreate,
 @router.get("/{employee_id}/leave", response_model=List[LeaveOut])
 def get_leaves(employee_id: int, service: EmployeeService = Depends(get_service)):
     return service.get_leaves(employee_id)
+
+

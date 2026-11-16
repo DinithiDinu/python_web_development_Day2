@@ -1,6 +1,13 @@
 from datetime import date, datetime
 from pydantic import BaseModel, EmailStr, Field, model_validator
+from typing import List
 
+#Pagination
+class EmployeePage(BaseModel):
+    items: List[EmployeeOut]
+    total: int
+    skip: int
+    limit: int
 
 #Department
 class DepartmentCreate(BaseModel):
@@ -61,3 +68,5 @@ class LeaveOut(BaseModel):
     status: str
 
     model_config = {"from_attributes": True}
+
+    

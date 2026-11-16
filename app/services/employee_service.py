@@ -50,8 +50,9 @@ class EmployeeService:
         self.db.refresh(employee)
         return employee
 
-    def list_employees(self):
-        return self.employees.get_all()
+    def list_employees(self, skip: int = 0, limit: int = 20):
+        items, total = self.employees.get_page(skip, limit)
+        return {"items": items, "total": total, "skip": skip, "limit": limit}
 
     def get_employee(self, employee_id: int) -> Employee:
         return self._get_or_404(employee_id)
