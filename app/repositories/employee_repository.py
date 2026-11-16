@@ -24,3 +24,11 @@ class EmployeeRepository:
 
     def soft_delete(self, employee: Employee):
         employee.is_deleted = True
+
+    def get_page(self, skip: int, limit: int):
+        query = self.db.query(Employee).filter(Employee.is_deleted == False)
+        total = query.count()
+        items = query.order_by(Employee.employee_id).offset(skip).limit(limit).all()
+        return items, total
+
+    
